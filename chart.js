@@ -75,47 +75,8 @@ function createChart(x, y) {
         ctx.lineWidth = 2;
 
         // Draw angle arc
-        ctx.arc(originX, originY, radius, 0,options.theta, false);
-        ctx.stroke();plugins: [{
-  id: 'angleArc',
-  afterDraw(chart, args, options) {
-    const { ctx, scales } = chart;
-
-    // Get origin in pixel space
-    const originX = scales.x.getPixelForValue(0);
-    const originY = scales.y.getPixelForValue(0);
-
-    // Get target point in pixel space
-    const pointX = scales.x.getPixelForValue(x);
-    const pointY = scales.y.getPixelForValue(y);
-
-    // Calculate angle in canvas coordinates
-    const dx = pointX - originX;
-    const dy = pointY - originY;
-    const thetaCanvas = Math.atan2(dy, dx); // Canvas angle
-
-    const radius = 40; // arc radius in pixels
-
-    ctx.save();
-    ctx.beginPath();
-    ctx.strokeStyle = 'rgba(255, 165, 0, 0.8)';
-    ctx.lineWidth = 2;
-
-    // Draw arc from 0 to thetaCanvas
-    ctx.arc(originX, originY, radius, 0, thetaCanvas, thetaCanvas < 0);
-    ctx.stroke();
-
-    // Draw label
-    const labelAngle = thetaCanvas / 2;
-    const labelX = originX + (radius + 10) * Math.cos(labelAngle);
-    const labelY = originY + (radius + 10) * Math.sin(labelAngle);
-    ctx.fillStyle = 'orange';
-    ctx.font = '14px sans-serif';
-    ctx.fillText('θ', labelX, labelY);
-    ctx.restore();
-  }
-}]
-
+        ctx.arc(originX, originY, radius, 0,-options.angleRadians*3.14/180, true);
+        ctx.stroke();
 
         // Add angle label
         const labelX = originX + (radius + 10) * Math.cos(options.theta / 2);
