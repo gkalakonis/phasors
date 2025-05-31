@@ -1,0 +1,57 @@
+function convertToRectangular() {
+  var r = parseFloat(document.getElementById('polar-r').value);
+  var theta = parseFloat(document.getElementById('polar-theta').value);
+
+  var x = r * Math.cos(toRadians(theta));
+  var y = r * Math.sin(toRadians(theta));
+
+  document.getElementById('rectangular-x').value = x.toFixed(2);
+  document.getElementById('rectangular-y').value = y.toFixed(2);
+
+  createChart(x, y);
+}
+
+function convertToPolar() {
+  var x = parseFloat(document.getElementById('rectangular-x').value);
+  var y = parseFloat(document.getElementById('rectangular-y').value);
+
+  var r = Math.sqrt(x ** 2 + y ** 2);
+  var theta = toDegrees(Math.atan2(y, x));
+
+  document.getElementById('polar-r').value = r.toFixed(2);
+  document.getElementById('polar-theta').value = theta.toFixed(2);
+
+  createChart(x, y);
+}
+
+function toRadians(degrees) {
+  return degrees * Math.PI / 180;
+}
+
+function toDegrees(radians) {
+  return radians * 180 / Math.PI;
+}
+
+function createChart(x, y) {
+  var ctx = document.getElementById('myChart').getContext('2d');
+  var chart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: ['X Coordinate', 'Y Coordinate'],
+      datasets: [{
+        label: 'Coordinates',
+        data: [x, y],
+        backgroundColor: ['rgba(255, 99, 132, 0.2)', 'rgba(54, 162, 235, 0.2)'],
+        borderColor: ['rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)'],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+}

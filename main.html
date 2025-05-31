@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>   
+<head>
+  <title>Coordinate Converter</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+
+</head>
+<body>
+  <h1>Coordinate Converter</h1>
+  
+  <div class="container">
+    <div>
+      <label for="polar-r">Radius (r):</label>
+      <input type="number" id="polar-r">
+    </div>
+    <div>
+      <label for="polar-theta">Angle (θ):</label>
+      <input type="number" id="polar-theta">
+    </div>
+    <button onclick="convertToRectangular()">Convert to Rectangular</button>
+  </div>
+
+  <div class="container">
+    <div>
+      <label for="rectangular-x">X Coordinate:</label>
+      <input type="number" id="rectangular-x">
+    </div>
+    <div>
+      <label for="rectangular-y">Y Coordinate:</label>
+      <input type="number" id="rectangular-y">
+    </div>
+    <button onclick="convertToPolar()">Convert to Polar</button>
+  </div>
+
+ 
+
+  <div class="canvas-container">
+  <canvas id="myChart"></canvas>
+</div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="chart.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
